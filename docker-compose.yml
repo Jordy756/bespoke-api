@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: bespoke_db
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: rootpassword
+      POSTGRES_DB: bespoke
+    ports:
+      - '5432:5432'
+    volumes:
+      - bespoke_pgdata:/var/lib/postgresql/data
+
+volumes:
+  bespoke_pgdata:

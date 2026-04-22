@@ -15,9 +15,12 @@ La siguiente estructura representa un módulo llevado a su máxima madurez arqui
  ┣ 📂 core/                    👉 (Infraestructura transversal / Shared Kernel)
  ┃ ┣ 📂 config/                (Validación de .env, configuración de la app)
  ┃ ┣ 📂 database/              (Servicio de conexión a Prisma/Postgres)
+ ┃ ┣ 📂 decorators/            (Decoradores personalizados. Ej: `@CurrentUser()`)
  ┃ ┣ 📂 filters/               (Manejo global de excepciones. Ej: Transformar 500 a JSON seguro)
  ┃ ┣ 📂 guards/                (Protección global de rutas. Ej: JwtAuthGuard)
  ┃ ┣ 📂 interceptors/          (Loggers globales, serializadores de respuesta)
+ ┃ ┣ 📂 middlewares/           (Aduana de bajo nivel de Express. Ej: Logger de IP antes del contexto de NestJS)
+ ┃ ┣ 📂 utils/                 (Funciones puras sin inyección de dependencias. Ej: formateadores de fecha)
  ┃ ┗ 📜 core.module.ts         (Módulo raíz transversal)
  ┃
  ┗ 📂 modules/                 👉 (Vertical Slices / Dominios de Negocio)
