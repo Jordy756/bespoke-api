@@ -1,27 +1,14 @@
-import { plainToInstance } from 'class-transformer';
 import { User } from '@modules/users/domain/entities/user.entity';
 import { UserResponseDto } from '@modules/users/application/dtos/user-response.dto';
-import { UserPersistence } from '@modules/users/infrastructure/persistence/user.persistence';
+import { CreateUserDto } from '@modules/users/application/dtos/create-user.dto';
 
 export class UserMapper {
-  static toResponseDto(user: User): UserResponseDto {
-    const response = new UserResponseDto();
-    response.id = user.id!;
-    response.email = user['email'].getValue();
-    response.createdAt = user['createdAt'] || new Date();
-    response.updatedAt = user['updatedAt'] || new Date();
-
-    return plainToInstance(UserResponseDto, response, {
-      excludeExtraneousValues: true,
-    });
+  static toDTO(user: User): UserResponseDto {
+    throw new Error('Method not implemented.');
   }
 
-  static toPersistenceModel(user: User): UserPersistence {
-    return {
-      id: user.id || '',
-      email: user['email'].getValue(),
-      createdAt: user['createdAt'] || new Date(),
-      updatedAt: user['updatedAt'] || new Date(),
-    };
+  static toEntity(createUserDto: CreateUserDto): User {
+    // return User.createNew(createUserDto.email);
+    throw new Error('Method not implemented.');
   }
 }

@@ -12,8 +12,9 @@ import { CreateUserDto } from '@modules/users/application/dtos/create-user.dto';
 import { UserResponseDto } from '@modules/users/application/dtos/user-response.dto';
 import { RegisterUserCommand } from '@modules/users/application/commands/register-user.command';
 import { UserAlreadyExistsException } from '@modules/users/domain/exceptions/user-already-exists.exception';
+import { UserMapper } from '@modules/users/application/mappers/user.mapper';
 
-@Controller('auth')
+@Controller('users')
 export class UsersController {
   constructor(@Inject(RegisterUserCommand) private readonly registerUserCommand: RegisterUserCommand) {}
 
@@ -21,9 +22,8 @@ export class UsersController {
   @HttpCode(HttpStatus.CREATED)
   async register(@Body() createUserDto: CreateUserDto): Promise<UserResponseDto> {
     try {
-      const command = { email: createUserDto.email };
-      const result = await this.registerUserCommand.execute(command);
-      return result;
+      const result = await this.registerUserCommand.execute(UserMapper.toEntity(createUserDto));
+      return UserMapper.toDTO(result);
     } catch (error) {
       if (error instanceof UserAlreadyExistsException) {
         throw new ConflictException(error.message);

@@ -11,10 +11,7 @@ import { PrismaUserRepository } from '@modules/users/infrastructure/adapters/rep
    * Providers: Todas las clases e inyectables disponibles en este módulo
    */
   providers: [
-    // Command Handlers
     RegisterUserCommand,
-
-    // Adapters (Implementaciones concretas de Ports)
     PrismaUserRepository,
 
     /**
