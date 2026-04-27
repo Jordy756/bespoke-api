@@ -2,23 +2,24 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@core/database/prisma.service';
 import type { IUserRepository } from '@modules/users/domain/ports/user.repository.port';
 import type { User } from '@modules/users/domain/entities/user.entity';
-// import { UserEmail } from '@modules/users/domain/value-objects/user-email';
-import { UserMapper } from '@modules/users/application/mappers/user.mapper';
 
 @Injectable()
-export class PrismaUserRepository implements IUserRepository {
+export class UserRepository implements IUserRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async save(user: User): Promise<User> {
-    const persistenceData = UserMapper.toPersistenceModel(user);
-
-    const savedUser = await this.prisma.user.upsert({
-      where: { email: persistenceData.email },
-      update: persistenceData,
-      create: persistenceData,
+    const saved = await this.prisma.user.create({
+      data: {
+        email: user.email.getValue(),
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      },
     });
+    return this.toDomain(saved);
+  }
 
-    return UserMapper.toDomainEntity(savedUser);
+  private toDomain(raw: PrismaUser): User {
+    return User.reconstruct(raw.id, UserEmail.create(raw.email), raw.createdAt, raw.updatedAt);
   }
 
   // async findByEmail(email: UserEmail): Promise<User | undefined> {

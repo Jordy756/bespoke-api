@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { CoreModule } from '@core/core.module';
 import { UsersController } from '@modules/users/infrastructure/http/controllers/users.controller';
 import { RegisterUserCommand } from '@modules/users/application/commands/register-user.command';
-import { PrismaUserRepository } from '@modules/users/infrastructure/adapters/repositories/user.repository';
+import { UserRepository } from '@modules/users/infrastructure/adapters/repositories/user.repository';
 
 @Module({
   imports: [CoreModule],
@@ -12,7 +12,7 @@ import { PrismaUserRepository } from '@modules/users/infrastructure/adapters/rep
    */
   providers: [
     RegisterUserCommand,
-    PrismaUserRepository,
+    UserRepository,
 
     /**
      * INYECCIÓN HEXAGONAL: Mapeo de abstracción → implementación
@@ -21,7 +21,7 @@ import { PrismaUserRepository } from '@modules/users/infrastructure/adapters/rep
      */
     {
       provide: 'IUserRepository',
-      useClass: PrismaUserRepository,
+      useClass: UserRepository,
     },
   ],
   controllers: [UsersController],
