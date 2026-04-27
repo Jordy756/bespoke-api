@@ -22,11 +22,16 @@
 //   // name?: string;
 // }
 
+import { ApiProperty } from '@nestjs/swagger';
 import type { TransformFnParams } from 'class-transformer';
 import { Transform } from 'class-transformer';
 import { IsEmail } from 'class-validator';
 
 export class CreateUserDto {
+  @ApiProperty({
+    description: 'The email address of the user',
+    example: 'john.doe@example.com',
+  })
   @IsEmail({}, { message: 'Email must be a valid email address' })
   @Transform(({ value }: TransformFnParams) => (typeof value === 'string' ? value.trim().toLowerCase() : ''))
   email!: string;

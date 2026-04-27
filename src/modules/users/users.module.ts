@@ -6,19 +6,9 @@ import { UserRepository } from '@modules/users/infrastructure/adapters/repositor
 
 @Module({
   imports: [CoreModule],
-
-  /**
-   * Providers: Todas las clases e inyectables disponibles en este módulo
-   */
   providers: [
     RegisterUserCommand,
     UserRepository,
-
-    /**
-     * INYECCIÓN HEXAGONAL: Mapeo de abstracción → implementación
-     *
-     * Cuando un Handler pide 'IPasswordHasher',
-     */
     {
       provide: 'IUserRepository',
       useClass: UserRepository,

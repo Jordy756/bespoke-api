@@ -8,8 +8,9 @@ export class User {
     public readonly updatedAt?: Date,
   ) {}
 
-  static createNew(email: UserEmail): User {
-    return new User(undefined, email);
+  static createNew(email: string): User {
+    const userEmail = UserEmail.create(email);
+    return new User(undefined, userEmail);
   }
 
   static reconstruct(id: string, email: UserEmail, createdAt?: Date, updatedAt?: Date): User {

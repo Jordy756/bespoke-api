@@ -1,11 +1,9 @@
 import { User } from '@modules/users/domain/entities/user.entity';
 import { UserResponseDto } from '@modules/users/application/dtos/user-response.dto';
 import { CreateUserDto } from '@modules/users/application/dtos/create-user.dto';
-import { UserEmail } from '@modules/users/domain/value-objects/user-email';
 
 export class UserMapper {
-  static toEntity(dto: CreateUserDto): User {
-    const email = UserEmail.create(dto.email);
+  static toCreateEntity({ email }: CreateUserDto): User {
     return User.createNew(email);
   }
 
@@ -18,5 +16,9 @@ export class UserMapper {
     dto.updatedAt = user.updatedAt!;
 
     return dto;
+  }
+
+  static toDTOs(users: User[]): UserResponseDto[] {
+    return users.map((user) => this.toDTO(user));
   }
 }
