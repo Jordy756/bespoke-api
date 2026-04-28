@@ -3,11 +3,13 @@ import { CoreModule } from '@core/core.module';
 import { AccountController } from '@modules/account/infrastructure/http/controllers/account.controller';
 import { RegisterUserCommand } from '@modules/account/application/commands/register-user.command';
 import { AccountRepository } from '@modules/account/infrastructure/adapters/repositories/account.repository';
+import { LoginUserCommand } from './application/commands/login-user.command';
 
 @Module({
   imports: [CoreModule],
   providers: [
     RegisterUserCommand,
+    LoginUserCommand,
     AccountRepository,
     {
       provide: 'IAccountRepository',

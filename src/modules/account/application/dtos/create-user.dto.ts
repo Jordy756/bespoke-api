@@ -1,7 +1,7 @@
+import { AuthProvider } from '@modules/account/domain/enums/auth-provider.enum';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import { IsEmail, IsEnum, IsOptional, IsString } from 'class-validator';
-import { AuthProvider } from '../../domain/enums/auth-provider.enum';
 
 export class CreateUserDto {
   @ApiProperty({

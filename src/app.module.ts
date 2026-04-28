@@ -3,6 +3,7 @@ import { validateEnv } from '@core/config/environment.config';
 import { AccountModule } from '@modules/account/account.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { ResumeModule } from './modules/resume/resume.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { ConfigModule } from '@nestjs/config';
     }),
     CoreModule,
     AccountModule,
+    ResumeModule,
   ],
   controllers: [],
   providers: [],
