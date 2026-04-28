@@ -7,13 +7,30 @@ import { Injectable } from '@nestjs/common';
 export class AccountRepository implements IAccountRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async save({ email }: User): Promise<User> {
+  async save(user: User): Promise<User> {
     const saved = await this.prisma.user.create({
       data: {
-        email: email.getValue(),
+        email: user.email.getValue(),
+        provider: user.provider,
+        providerId: user.providerId,
+        name: user.name,
+        avatarUrl: user.avatarUrl,
+        plan: user.plan,
+        dailyCredits: user.dailyCredits,
       },
     });
 
-    return User.reconstruct(saved.id, email, saved.createdAt, saved.updatedAt);
+    return User.reconstruct({
+      id: saved.id,
+      email: user.email,
+      provider: user.provider,
+      providerId: user.providerId,
+      name: user.name,
+      avatarUrl: user.avatarUrl,
+      plan: user.plan,
+      dailyCredits: user.dailyCredits,
+      createdAt: saved.createdAt,
+      updatedAt: saved.updatedAt,
+    });
   }
 }

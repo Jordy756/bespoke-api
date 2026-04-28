@@ -1,10 +1,10 @@
-import { CreateUserDto } from '@modules/account/application/dtos/create-user.dto';
-import { UserResponseDto } from '@modules/account/application/dtos/user-response.dto';
-import { User } from '@modules/account/domain/entities/user.entity';
+import { CreateUserDto } from '../dtos/create-user.dto';
+import { UserResponseDto } from '../dtos/user-response.dto';
+import { User } from '../../domain/entities/user.entity';
 
 export class UserMapper {
-  static toCreateEntity({ email }: CreateUserDto): User {
-    return User.createNew(email);
+  static toCreateEntity(dto: CreateUserDto): User {
+    return User.createNew(dto.email, dto.provider, dto.providerId, dto.name, dto.avatarUrl);
   }
 
   static toDTO(user: User): UserResponseDto {
@@ -12,6 +12,11 @@ export class UserMapper {
 
     dto.id = user.id!;
     dto.email = user.email.getValue();
+    dto.provider = user.provider;
+    dto.name = user.name ?? undefined;
+    dto.avatarUrl = user.avatarUrl ?? undefined;
+    dto.plan = user.plan;
+    dto.dailyCredits = user.dailyCredits;
     dto.createdAt = user.createdAt!;
     dto.updatedAt = user.updatedAt!;
 

@@ -1,5 +1,5 @@
 export enum SubscriptionPlan {
-  FREE = 'free',
-  PREMIUM = 'premium',
-  ENTERPRISE = 'enterprise',
+  FREE = 'FREE',
+  PREMIUM = 'PREMIUM',
+  ENTERPRISE = 'ENTERPRISE',
 }

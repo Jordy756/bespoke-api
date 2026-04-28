@@ -4,8 +4,14 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { apiReference } from '@scalar/nestjs-api-reference';
 import { AppModule } from './app.module';
 
+import { ConfigService } from '@nestjs/config';
+import { EnvironmentVariables } from '@core/config/environment.config';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  const configService = app.get(ConfigService<EnvironmentVariables, true>);
+  const port = configService.get<number>('PORT');
 
   app.enableCors();
 
@@ -28,11 +34,12 @@ async function bootstrap() {
     '/docs',
     apiReference({
       content: document,
+      theme: 'deepSpace',
     }),
   );
 
-  await app.listen(process.env.PORT ?? 3000);
-  console.log(`Application is running on: ${await app.getUrl()}`);
+  await app.listen(port);
+  console.log(`Application is running on: ${await app.getUrl()}/docs`);
 }
 
 bootstrap().catch((error) => {

@@ -1,4 +1,6 @@
 import { Expose } from 'class-transformer';
+import { AuthProvider } from '../../domain/enums/auth-provider.enum';
+import { SubscriptionPlan } from '../../domain/enums/subscription-plan.enum';
 
 export class UserResponseDto {
   @Expose()
@@ -7,11 +9,20 @@ export class UserResponseDto {
   @Expose()
   email!: string;
 
-  // @Expose()
-  // name?: string;
+  @Expose()
+  provider!: AuthProvider;
 
-  // @Expose()
-  // credits!: number;
+  @Expose()
+  name?: string;
+
+  @Expose()
+  avatarUrl?: string;
+
+  @Expose()
+  plan!: SubscriptionPlan;
+
+  @Expose()
+  dailyCredits!: number;
 
   @Expose()
   createdAt!: Date;

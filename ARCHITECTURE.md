@@ -24,7 +24,7 @@ La siguiente estructura representa un módulo llevado a su máxima madurez arqui
  ┃ ┗ 📜 core.module.ts         (Módulo raíz transversal)
  ┃
  ┗ 📂 modules/                 👉 (Vertical Slices / Dominios de Negocio)
-    ┗ 📂 resumes/              (Ejemplo del módulo Core de negocio)
+    ┗ 📂 resume/              (Ejemplo del módulo Core de negocio, debe ir en singular)
        ┣ 📂 domain/            👉 (Capa Interna: Reglas de Negocio Puras. CERO NestJS/Librerías)
        ┃ ┣ 📂 entities/        (Modelos de negocio ricos. Ej: `Resume.ts`. Tienen lógica y validaciones)
        ┃ ┣ 📂 value-objects/   (Tipos validados inmutables. Ej: `Score.ts` del 1 al 100)
@@ -41,7 +41,7 @@ La siguiente estructura representa un módulo llevado a su máxima madurez arqui
        ┃ ┗ 📂 event-handlers/  (Reaccionan a eventos de dominio en background. Ej: `DeductCreditsOnResumeGenerated.ts`)
        ┃
        ┣ 📂 infrastructure/    👉 (Capa Externa: NestJS, Express, Prisma, CronJobs, APIs Externas)
-       ┃ ┣ 📂 persistence/     (Modelos exclusivos del ORM/DB que no deben mezclarse con el Dominio)
+       ┃ ┣ 📂 persistence/     (Modelos exclusivos del ORM/DB que no deben mezclarse con el Dominio, con prisma no es necesario)
        ┃ ┣ 📂 adapters/        (Implementaciones reales de los `ports`. Ej: `PrismaResumeRepository.ts`)
        ┃ ┣ 📂 cron/            (Tareas programadas. Ej: `CleanupDraftResumes.job.ts`)
        ┃ ┗ 📂 http/            (Mecanismo de Entrega HTTP)
@@ -49,7 +49,7 @@ La siguiente estructura representa un módulo llevado a su máxima madurez arqui
        ┃    ┣ 📂 guards/       (Protección específica del módulo. Ej: `IsResumeOwnerGuard.ts`)
        ┃    ┗ 📂 middlewares/  (Filtros o loggers antes del controlador de esta ruta específica)
        ┃
-       ┗ 📜 resumes.module.ts  (Inyección de Dependencias. Conecta todo)
+       ┗ 📜 resume.module.ts  (Inyección de Dependencias. Conecta todo)
 ```
 
 ---
@@ -68,28 +68,32 @@ La siguiente estructura representa un módulo llevado a su máxima madurez arqui
 Para mantener la consistencia en todo el código base, el proyecto adopta convenciones de nomenclatura estrictas inspiradas en el ecosistema de NestJS y Angular.
 
 **Regla 1: Las carpetas utilizan `kebab-case` (minúsculas con guiones)**
-* ✅ **Correcto:** `value-objects`, `event-handlers`, `job-offers`.
-* ❌ **Incorrecto:** `valueObjects`, `EventHandlers`, `job_offers`.
+
+- ✅ **Correcto:** `value-objects`, `event-handlers`, `job-offers`.
+- ❌ **Incorrecto:** `valueObjects`, `EventHandlers`, `job_offers`.
 
 **Regla 2: Los archivos utilizan sufijos de tipo (La regla del punto)**
 El formato estándar es: `nombre-del-archivo.tipo-de-archivo.ts`. Todo en minúsculas y separado por guiones.
-* Controladores: `users.controller.ts`
-* Módulos: `users.module.ts`
-* Comandos/Consultas: `generate-resume.command.ts`, `get-user.query.ts`
-* Entidades: `resume.entity.ts` (o simplemente `resume.ts` si ya se encuentra dentro de la carpeta `entities/`).
-* Excepciones: `user-not-found.exception.ts`
-* DTOs: `create-user.dto.ts`
+
+- Controladores: `users.controller.ts`
+- Módulos: `users.module.ts`
+- Comandos/Consultas: `generate-resume.command.ts`, `get-user.query.ts`
+- Entidades: `resume.entity.ts` (o simplemente `resume.ts` si ya se encuentra dentro de la carpeta `entities/`).
+- Excepciones: `user-not-found.exception.ts`
+- DTOs: `create-user.dto.ts`
 
 **Regla 3: Las Clases e Interfaces utilizan `PascalCase`**
 El nombre de la clase (dentro del archivo) debe coincidir con el nombre del archivo (sin el sufijo de tipo).
-* Archivo: `generate-resume.command.ts` ➔ Clase: `export class GenerateResumeCommand {}`
-* Archivo: `user-not-found.exception.ts` ➔ Clase: `export class UserNotFoundException {}`
-* **Interfaces:** Se utiliza el prefijo `I` (herencia de C# y SOLID) para distinguirlas de las implementaciones concretas.
-  * Archivo: `resume.repository.port.ts` ➔ Interfaz: `export interface IResumeRepository {}`
+
+- Archivo: `generate-resume.command.ts` ➔ Clase: `export class GenerateResumeCommand {}`
+- Archivo: `user-not-found.exception.ts` ➔ Clase: `export class UserNotFoundException {}`
+- **Interfaces:** Se utiliza el prefijo `I` (herencia de C# y SOLID) para distinguirlas de las implementaciones concretas.
+  - Archivo: `resume.repository.port.ts` ➔ Interfaz: `export interface IResumeRepository {}`
 
 **Regla 4: Variables, Métodos e Instancias utilizan `camelCase`**
-* Instancias: `const generateResumeCommand = new GenerateResumeCommand();`
-* Métodos: `async findUserById(userId: string) {}`
+
+- Instancias: `const generateResumeCommand = new GenerateResumeCommand();`
+- Métodos: `async findUserById(userId: string) {}`
 
 ---
 
@@ -98,6 +102,7 @@ El nombre de la clase (dentro del archivo) debe coincidir con el nombre del arch
 La regla arquitectónica estricta es: **La dependencia siempre apunta hacia adentro**. La Infraestructura depende de la Aplicación, y la Aplicación depende del Dominio. El Dominio no depende de capas externas.
 
 ### Flujo Simple de Lectura (Sin Guards ni Eventos)
+
 Ejemplo de un flujo de lectura directo, como listar los CVs creados por un usuario.
 
 1. **(Entrada)** El cliente realiza una petición HTTP `GET /resumes` que es recibida por el `resumes.controller.ts` (Infrastructure/HTTP).
@@ -112,6 +117,7 @@ Ejemplo de un flujo de lectura directo, como listar los CVs creados por un usuar
 ---
 
 ### Flujo Complejo de Escritura (Escenario Full: IA, PDF, Guards y Eventos)
+
 Ejemplo de una transacción compleja: el usuario envía una oferta de trabajo para generar un CV adaptado.
 
 1. **(Entrada)** El cliente envía una petición HTTP `POST /resumes/generate` hacia el `resumes.controller.ts` (Infrastructure/HTTP).
