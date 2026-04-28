@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
 import { CoreModule } from '@core/core.module';
-import { AccountController } from '@modules/account/infrastructure/http/controllers/account.controller';
+import { LoginUserCommand } from '@modules/account/application/commands/login-user.command';
 import { RegisterUserCommand } from '@modules/account/application/commands/register-user.command';
 import { AccountRepository } from '@modules/account/infrastructure/adapters/repositories/account.repository';
-import { LoginUserCommand } from './application/commands/login-user.command';
+import { AccountController } from '@modules/account/infrastructure/http/controllers/account.controller';
+import { Module } from '@nestjs/common';
 
 @Module({
   imports: [CoreModule],
