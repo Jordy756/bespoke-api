@@ -1,4 +1,4 @@
-import { UserEmail } from '@modules/users/domain/value-objects/user-email';
+import { UserEmail } from '@modules/account/domain/value-objects/user-email';
 
 export class User {
   private constructor(

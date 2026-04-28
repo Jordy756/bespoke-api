@@ -1,10 +1,10 @@
 import { PrismaService } from '@core/database/prisma.service';
-import { User } from '@modules/users/domain/entities/user.entity';
-import type { IUserRepository } from '@modules/users/domain/ports/user.repository.port';
+import { User } from '@modules/account/domain/entities/user.entity';
+import type { IAccountRepository } from '@modules/account/domain/ports/account.repository.port';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class UserRepository implements IUserRepository {
+export class AccountRepository implements IAccountRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async save({ email }: User): Promise<User> {

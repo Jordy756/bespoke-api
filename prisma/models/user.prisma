@@ -1,8 +1,25 @@
-model User {
-  id           String                 @id @default(uuid())
-  email        String                 @unique
-  createdAt    DateTime               @default(now())
-  updatedAt    DateTime               @updatedAt
+enum AuthProvider {
+  GOOGLE
+  GITHUB
+}
 
-  @@index([email])
+enum SubscriptionPlan {
+  FREE
+  PREMIUM
+  ENTERPRISE
+}
+
+model User {
+  id           String           @id @default(uuid())
+  email        String           @unique
+  provider     AuthProvider
+  providerId   String           @unique
+  name         String?
+  avatarUrl    String?
+  plan         SubscriptionPlan @default(FREE)
+  dailyCredits Int              @default(3)
+  profile      Profile?
+  resumes      Resume[]
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
 }
