@@ -4,6 +4,7 @@ import { AccountModule } from '@modules/account/account.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ResumeModule } from './modules/resume/resume.module';
+import { ProfileModule } from './modules/profile/profile.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ResumeModule } from './modules/resume/resume.module';
     CoreModule,
     AccountModule,
     ResumeModule,
+    ProfileModule,
   ],
   controllers: [],
   providers: [],
