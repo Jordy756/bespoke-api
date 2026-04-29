@@ -14,19 +14,17 @@ export class UserMapper {
   }
 
   static toDTO(user: User): UserResponseDto {
-    const dto = new UserResponseDto();
-
-    dto.id = user.id!;
-    dto.email = user.email.getValue();
-    dto.provider = user.provider;
-    dto.name = user.name ?? undefined;
-    dto.avatarUrl = user.avatarUrl ?? undefined;
-    dto.plan = user.plan;
-    dto.dailyCredits = user.dailyCredits;
-    dto.createdAt = user.createdAt!;
-    dto.updatedAt = user.updatedAt!;
-
-    return dto;
+    return {
+      id: user.id!,
+      email: user.email.getValue(),
+      provider: user.provider,
+      name: user.name ?? undefined,
+      avatarUrl: user.avatarUrl ?? undefined,
+      plan: user.plan,
+      dailyCredits: user.dailyCredits,
+      createdAt: user.createdAt!,
+      updatedAt: user.updatedAt!,
+    };
   }
 
   static toDTOs(users: User[]): UserResponseDto[] {

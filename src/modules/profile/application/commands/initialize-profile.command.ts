@@ -6,13 +6,10 @@ import { ConflictException, Inject, Injectable } from '@nestjs/common';
 export class InitializeProfileCommand {
   constructor(@Inject('IProfileRepository') private readonly profileRepository: IProfileRepository) {}
 
-  async execute(userId: string, initialData: Record<string, any>): Promise<Profile> {
-    const existing = await this.profileRepository.findByUserId(userId);
-    if (existing) {
-      throw new ConflictException('Profile already initialized for this user');
-    }
+  async execute(profile: Profile): Promise<Profile> {
+    const existing = await this.profileRepository.findByUserId(profile.userId);
 
-    const profile = new Profile(crypto.randomUUID(), userId, initialData || {}, new Date(), new Date());
+    if (existing) throw new ConflictException('Profile already initialized for this user');
 
     return await this.profileRepository.save(profile);
   }

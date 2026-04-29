@@ -6,7 +6,7 @@ import { ProfileResponseDto } from '@modules/profile/application/dtos/profile-re
 import { UpdateProfileDataDto } from '@modules/profile/application/dtos/update-profile-data.dto';
 import { ProfileMapper } from '@modules/profile/application/mappers/profile.mapper';
 import { GetUserProfileQuery } from '@modules/profile/application/queries/get-user-profile.query';
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Headers, HttpCode, HttpStatus, Inject, Patch, Post } from '@nestjs/common';
 
 @Controller('profiles')
 export class ProfileController {
@@ -17,30 +17,41 @@ export class ProfileController {
     @Inject(GetUserProfileQuery) private readonly getUserProfileQuery: GetUserProfileQuery,
   ) {}
 
-  @Post()
+  @Post('me')
   @HttpCode(HttpStatus.CREATED)
-  async setupProfile(@Body() dto: InitializeProfileDto): Promise<ProfileResponseDto> {
-    const profile = await this.initializeProfileCommand.execute(dto.userId, dto.data || {});
-    return ProfileMapper.toDTO(profile);
+  async initializeProfile(
+    @Headers('x-user-id') userId: string, // TODO: Replace with @CurrentUser() from JWT Guard
+    @Body() dto: InitializeProfileDto,
+  ): Promise<ProfileResponseDto> {
+    const profileEntity = ProfileMapper.toCreateEntity(userId, dto);
+    const result = await this.initializeProfileCommand.execute(profileEntity);
+    return ProfileMapper.toDTO(result);
   }
 
-  @Get(':userId')
+  @Get('me')
   @HttpCode(HttpStatus.OK)
-  async getProfile(@Param('userId') userId: string): Promise<ProfileResponseDto> {
+  async getProfileDetails(
+    @Headers('x-user-id') userId: string, // TODO: Replace with @CurrentUser() from JWT Guard
+  ): Promise<ProfileResponseDto> {
     const profile = await this.getUserProfileQuery.execute(userId);
     return ProfileMapper.toDTO(profile);
   }
 
-  @Patch(':userId')
+  @Patch('me/data')
   @HttpCode(HttpStatus.OK)
-  async updateData(@Param('userId') userId: string, @Body() dto: UpdateProfileDataDto): Promise<ProfileResponseDto> {
+  async partiallyUpdateProfileData(
+    @Headers('x-user-id') userId: string, // TODO: Replace with @CurrentUser() from JWT Guard
+    @Body() dto: UpdateProfileDataDto,
+  ): Promise<ProfileResponseDto> {
     const profile = await this.updateProfileDataCommand.execute(userId, dto.data);
     return ProfileMapper.toDTO(profile);
   }
 
-  @Delete(':userId')
+  @Delete('me/data')
   @HttpCode(HttpStatus.NO_CONTENT)
-  async clearData(@Param('userId') userId: string): Promise<void> {
+  async purgeProfileData(
+    @Headers('x-user-id') userId: string, // TODO: Replace with @CurrentUser() from JWT Guard
+  ): Promise<void> {
     await this.clearProfileDataCommand.execute(userId);
   }
 }
