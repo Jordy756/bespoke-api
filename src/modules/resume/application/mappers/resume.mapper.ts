@@ -15,8 +15,15 @@ export class ResumeMapper {
   }
 
   // Not used directly in commands, but useful for rebuilding from DB responses (infrastructure layer helper)
-  static toDomain(data: any): Resume {
-    if (!data) return null;
+  static toDomain(data: {
+    jobTitle: string;
+    fitScore: number;
+    id: string;
+    userId: string;
+    data: unknown;
+    createdAt: Date;
+    updatedAt: Date;
+  }): Resume {
     return Resume.reconstruct({
       id: data.id,
       userId: data.userId,

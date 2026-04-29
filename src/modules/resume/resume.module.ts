@@ -1,16 +1,14 @@
+import { CoreModule } from '@core/core.module';
+import { GenerateResumeCommand } from '@modules/resume/application/commands/generate-resume.command';
+import { ResumeRepository } from '@modules/resume/infrastructure/adapters/repositories/resume.repository';
+import { MockAiResumeService } from '@modules/resume/infrastructure/adapters/services/mock-ai-resume.service';
+import { CompressorService } from '@modules/resume/infrastructure/adapters/services/compressor.service';
+import { ResumeController } from '@modules/resume/infrastructure/http/controllers/resume.controller';
 import { Module } from '@nestjs/common';
-import { CoreModule } from '../../core/core.module';
 import { ProfileModule } from '../profile/profile.module';
 
-import { ResumeController } from './infrastructure/http/controllers/resume.controller';
-import { GenerateResumeCommand } from './application/commands/generate-resume.command';
-
-import { ResumeRepository } from './infrastructure/adapters/repositories/resume.repository';
-import { ToonCompressorService } from './infrastructure/adapters/services/toon-compressor.service';
-import { MockAiResumeService } from './infrastructure/adapters/services/mock-ai-resume.service';
-
 @Module({
-  imports: [CoreModule, ProfileModule], // Import ProfileModule to get access to IProfileRepository
+  imports: [CoreModule, ProfileModule],
   controllers: [ResumeController],
   providers: [
     GenerateResumeCommand,
@@ -20,11 +18,11 @@ import { MockAiResumeService } from './infrastructure/adapters/services/mock-ai-
     },
     {
       provide: 'IProfileCompressorService',
-      useClass: ToonCompressorService,
+      useClass: CompressorService,
     },
     {
       provide: 'IAiResumeService',
-      useClass: MockAiResumeService, // Swap this out for OpenAiResumeService later
+      useClass: MockAiResumeService,
     },
   ],
 })

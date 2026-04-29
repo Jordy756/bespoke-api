@@ -8,7 +8,7 @@ import { Body, Controller, Headers, HttpCode, HttpStatus, Inject, Post } from '@
 export class ResumeController {
   constructor(@Inject(GenerateResumeCommand) private readonly generateResumeCommand: GenerateResumeCommand) {}
 
-  @Post('me/generate')
+  @Post()
   @HttpCode(HttpStatus.CREATED)
   async generateResumeForOffer(
     @Headers('x-user-id') userId: string,

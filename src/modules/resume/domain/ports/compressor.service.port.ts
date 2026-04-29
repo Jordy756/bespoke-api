@@ -1,6 +1,4 @@
-import type { JsonValue } from '@toon-format/toon';
-
 export interface ICompressorService {
-  compress(jsonData: Record<string, any>): string;
-  decompress(toonData: string): JsonValue;
+  compress(data: Record<string, any>): string;
+  decompress(data: string): Record<string, any>;
 }

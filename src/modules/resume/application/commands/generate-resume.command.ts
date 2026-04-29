@@ -16,20 +16,12 @@ export class GenerateResumeCommand {
 
   async execute(userId: string, jobOffer: string): Promise<Resume> {
     const profile = await this.profileRepository.findByUserId(userId);
-    if (!profile) {
-      throw new NotFoundException('Core profile not found. Please setup your profile first.');
-    }
 
-    // 2. Compress JSON to TOON format
+    if (!profile) throw new NotFoundException('Core profile not found. Please setup your profile first.');
+
     const compressedProfile = this.compressorService.compress(profile.data);
-
-    // 3. Call AI Service with compressed profile and job offer
     const aiResult = await this.aiService.generateTailoredResume(compressedProfile, jobOffer);
-
-    // 4. Decompress the generated TOON back to JSON
     const decompressedData = this.compressorService.decompress(aiResult.toonData);
-
-    // 5. Build and save the Resume Entity
     const resume = Resume.createNew(userId, aiResult.jobTitle, aiResult.fitScore, decompressedData);
 
     return await this.resumeRepository.save(resume);
