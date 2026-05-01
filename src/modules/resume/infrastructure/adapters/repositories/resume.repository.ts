@@ -32,7 +32,6 @@ export class ResumeRepository implements IResumeRepository {
       where: { id },
     });
 
-    if (!record) return null;
-    return ResumeMapper.toDomain(record);
+    return record ? ResumeMapper.toDomain(record) : null;
   }
 }

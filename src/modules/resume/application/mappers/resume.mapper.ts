@@ -14,7 +14,6 @@ export class ResumeMapper {
     };
   }
 
-  // Not used directly in commands, but useful for rebuilding from DB responses (infrastructure layer helper)
   static toDomain(data: {
     jobTitle: string;
     fitScore: number;

@@ -1,7 +1,6 @@
 import { PrismaService } from '@core/database/prisma.service';
+import { UserMapper } from '@modules/account/application/mappers/user.mapper';
 import { User } from '@modules/account/domain/entities/user.entity';
-import type { AuthProvider } from '@modules/account/domain/enums/auth-provider.enum';
-import type { SubscriptionPlan } from '@modules/account/domain/enums/subscription-plan.enum';
 import type { IAccountRepository } from '@modules/account/domain/ports/account.repository.port';
 import type { UserEmail } from '@modules/account/domain/value-objects/user-email';
 import { Injectable } from '@nestjs/common';
@@ -23,18 +22,7 @@ export class AccountRepository implements IAccountRepository {
       },
     });
 
-    return User.reconstruct({
-      id: saved.id,
-      email: user.email,
-      provider: user.provider,
-      providerId: user.providerId,
-      name: user.name,
-      avatarUrl: user.avatarUrl,
-      plan: user.plan,
-      dailyCredits: user.dailyCredits,
-      createdAt: saved.createdAt,
-      updatedAt: saved.updatedAt,
-    });
+    return UserMapper.toDomain(saved);
   }
 
   async findByEmail(email: UserEmail): Promise<User | null> {
@@ -42,19 +30,6 @@ export class AccountRepository implements IAccountRepository {
       where: { email: email.getValue() },
     });
 
-    if (!user) return null;
-
-    return User.reconstruct({
-      id: user.id,
-      email,
-      provider: user.provider as AuthProvider,
-      providerId: user.providerId,
-      name: user.name,
-      avatarUrl: user.avatarUrl,
-      plan: user.plan as SubscriptionPlan,
-      dailyCredits: user.dailyCredits,
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt,
-    });
+    return user ? UserMapper.toDomain(user) : null;
   }
 }

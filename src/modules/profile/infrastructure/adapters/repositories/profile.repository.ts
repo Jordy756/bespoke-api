@@ -33,8 +33,6 @@ export class ProfileRepository implements IProfileRepository {
       where: { userId },
     });
 
-    if (!record) return null;
-
-    return ProfileMapper.toDomain(record);
+    return record ? ProfileMapper.toDomain(record) : null;
   }
 }

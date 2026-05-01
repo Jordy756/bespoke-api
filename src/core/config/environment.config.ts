@@ -16,6 +16,12 @@ export class EnvironmentVariables {
 
   @IsString()
   DATABASE_URL!: string;
+
+  @IsString()
+  GEMINI_API_KEY?: string;
+
+  @IsString()
+  OPENAI_API_KEY?: string;
 }
 
 export function validateEnv(config: Record<string, unknown>) {

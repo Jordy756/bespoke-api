@@ -21,7 +21,9 @@ export class GenerateResumeCommand {
 
     const compressedProfile = this.compressorService.compress(profile.data);
     const aiResult = await this.aiService.generateTailoredResume(compressedProfile, jobOffer);
+    console.log({ aiResult });
     const decompressedData = this.compressorService.decompress(aiResult.toonData);
+    console.log({ decompressedData });
     const resume = Resume.createNew(userId, aiResult.jobTitle, aiResult.fitScore, decompressedData);
 
     return await this.resumeRepository.save(resume);

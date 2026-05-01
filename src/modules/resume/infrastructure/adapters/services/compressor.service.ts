@@ -4,18 +4,18 @@ import { decode, encode } from '@toon-format/toon';
 
 @Injectable()
 export class CompressorService implements ICompressorService {
-  compress(jsonData: Record<string, any>): string {
+  compress(data: Record<string, any>): string {
     try {
-      return encode(jsonData);
+      return encode(data);
     } catch (error) {
       console.error('Compression error:', error);
       throw new InternalServerErrorException('Failed to compress profile data');
     }
   }
 
-  decompress(toonData: string): Record<string, any> {
+  decompress(data: string): Record<string, any> {
     try {
-      return decode(toonData) as Record<string, any>;
+      return decode(data, { strict: true }) as Record<string, any>;
     } catch (error) {
       console.error('Decompression error:', error);
       throw new InternalServerErrorException('Failed to decompress profile data from AI');
