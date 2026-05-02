@@ -1,11 +1,12 @@
+import { EnvironmentVariables } from '@core/config/environment.config';
 import { ValidationPipe } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { apiReference } from '@scalar/nestjs-api-reference';
 import { AppModule } from './app.module';
 
-import { ConfigService } from '@nestjs/config';
-import { EnvironmentVariables } from '@core/config/environment.config';
+// TODO: Uninstall bycrypt and remove all its usages, we don't need it for now and it causes installation issues on some platforms
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

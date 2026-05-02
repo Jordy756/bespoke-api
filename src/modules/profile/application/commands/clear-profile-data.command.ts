@@ -11,7 +11,14 @@ export class ClearProfileDataCommand {
       throw new NotFoundException('Profile not found');
     }
 
-    profile.clearData();
+    profile.data = {
+      basics: { name: '', email: '', phone: '', summary: '', location: '' },
+      experience: [],
+      education: [],
+      certificates: [],
+      skills: { frontend: [], backend: [], mobile: [], architecture: [], devops: [], methodologies: [], ia: [], languages: [] },
+      projects: []
+    };
     await this.profileRepository.save(profile);
   }
 }

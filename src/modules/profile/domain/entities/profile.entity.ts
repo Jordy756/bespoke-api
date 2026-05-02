@@ -1,7 +1,63 @@
+export interface ProfileBasics {
+  name: string;
+  email: string;
+  phone: string;
+  summary: string;
+  location: string;
+}
+
+export interface ProfileExperience {
+  company: string;
+  position: string;
+  startDate: string;
+  endDate: string;
+  achievements: string[];
+}
+
+export interface ProfileEducation {
+  institution: string;
+  area: string;
+  startDate: string;
+  endDate: string;
+}
+
+export interface ProfileCertificate {
+  name: string;
+  date: string;
+  issuer: string;
+  outcomes: string[];
+}
+
+export interface ProfileSkills {
+  frontend: string[];
+  backend: string[];
+  mobile: string[];
+  architecture: string[];
+  devops: string[];
+  methodologies: string[];
+  ia: string[];
+  languages: string[];
+}
+
+export interface ProfileProject {
+  name: string;
+  description: string;
+  technologies: string[];
+}
+
+export interface ProfileData {
+  basics: ProfileBasics;
+  experience: ProfileExperience[];
+  education: ProfileEducation[];
+  certificates: ProfileCertificate[];
+  skills: ProfileSkills;
+  projects: ProfileProject[];
+}
+
 export interface ProfileProps {
   id?: string;
   userId: string;
-  data: Record<string, any>;
+  data: ProfileData;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -9,7 +65,7 @@ export interface ProfileProps {
 export class Profile {
   public readonly id?: string;
   public readonly userId: string;
-  public data: Record<string, any>;
+  public data: ProfileData;
   public readonly createdAt?: Date;
   public readonly updatedAt?: Date;
 
@@ -21,7 +77,7 @@ export class Profile {
     this.updatedAt = props.updatedAt;
   }
 
-  static createNew(userId: string, data: Record<string, any> = {}): Profile {
+  static createNew(userId: string, data: ProfileData): Profile {
     return new Profile({
       userId,
       data,
@@ -32,11 +88,7 @@ export class Profile {
     return new Profile(props);
   }
 
-  updateData(newData: Record<string, any>): void {
+  updateData(newData: Partial<ProfileData>): void {
     this.data = { ...this.data, ...newData };
-  }
-
-  clearData(): void {
-    this.data = {};
   }
 }

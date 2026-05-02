@@ -1,6 +1,6 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { GeneratedResumeResult, IAiResumeService } from '@modules/resume/domain/ports/ai-resume.service.port';
 import { AiOrchestratorService } from '@core/providers/ai-orchestrator.service';
+import { GeneratedResumeResult, IAiResumeService } from '@modules/resume/domain/ports/ai-resume.service.port';
+import { Injectable, Logger } from '@nestjs/common';
 
 @Injectable()
 export class AiResumeService implements IAiResumeService {
@@ -11,18 +11,17 @@ export class AiResumeService implements IAiResumeService {
   async generateTailoredResume(profileDataToon: string, jobOffer: string): Promise<GeneratedResumeResult> {
     this.logger.log('Starting tailored resume generation via orchestrated LLMs...');
 
-    // We construct a specific system prompt containing rules for JSON output
     const systemPrompt = `You are an expert ATS-friendly Resume Writer and Career Coach.
-Your task is to analyze the candidate's profile data (provided in TOON format, a highly compressed tabular format) and tailor it to match the provided job offer.
+      Your task is to analyze the candidate's profile data (provided in TOON format, a highly compressed tabular format) and tailor it to match the provided job offer.
 
-CRITICAL REQUIREMENT:
-You MUST output the result as a valid JSON object ONLY. Do not use Markdown blocks (no \`\`\`json), just the raw JSON object.
-The JSON must strictly match this structure:
-{
-  "jobTitle": "The tailored professional title for the candidate",
-  "fitScore": <number between 0 and 100>,
-  "resumeData": <The tailored resume data structured as an object matching standard JSON format>
-}`;
+      CRITICAL REQUIREMENT:
+      You MUST output the result as a valid JSON object ONLY. Do not use Markdown blocks (no \`\`\`json), just the raw JSON object.
+      The JSON must strictly match this structure:
+      {
+        "jobTitle": "The tailored professional title for the candidate",
+        "fitScore": <number between 0 and 100>,
+        "resumeData": <The tailored resume data structured as an object matching standard JSON format>
+    }`;
 
     const userPrompt = `[JOB OFFER]
 ${jobOffer}
@@ -34,10 +33,17 @@ Analyze the profile against the job offer, select the most relevant experience a
 
     try {
       // Call the domain-agnostic orchestrator asking specifically for JSON
-      const rawJsonResponse = await this.aiOrchestrator.generateContent(systemPrompt, userPrompt, { jsonMode: true });
+      const rawJsonResponse = await this.aiOrchestrator.generateTextContent({
+        system: systemPrompt,
+        prompt: userPrompt,
+      });
 
       // We parse the JSON output natively since we asked the LLM to use JSON
-      const parsedData = JSON.parse(rawJsonResponse);
+      const parsedData = JSON.parse(rawJsonResponse) as {
+        jobTitle?: string;
+        fitScore?: number;
+        resumeData?: Record<string, unknown>;
+      };
 
       // We stringify the tailored resume data payload as expected by the domain
       const resumeJsonString = JSON.stringify(parsedData.resumeData || parsedData);
@@ -45,12 +51,12 @@ Analyze the profile against the job offer, select the most relevant experience a
       return {
         jobTitle: parsedData.jobTitle || 'Tailored Resume',
         fitScore: parsedData.fitScore || 85,
-        toonData: resumeJsonString, // This holds JSON string now, you may rename toonData to resumeData in domain later
+        toonData: resumeJsonString,
       };
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : String(error);
       this.logger.error(`Failed to generate tailored resume: ${errorMessage}`);
-      throw new Error('Failed to tailor resume using AI. Please try again later.');
+      throw new Error('Failed to tailor resume using AI. Please try again later.', { cause: error });
     }
   }
 }

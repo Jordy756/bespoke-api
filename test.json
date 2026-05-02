@@ -1,0 +1,231 @@
+{
+  "data": {
+    "basics": {
+      "name": "Yordi Castro",
+      "email": "jordycastro1756@gmail.com",
+      "phone": "+506 8446 6964",
+      "summary": "Desarrollador Full Stack con más de 1 año de experiencia profesional en la creación de aplicaciones web y soluciones digitales. Especializado en tecnologías modernas, arquitecturas limpias, microservicios y principios SOLID. Adaptable, autodidacta y entusiasta del aprendizaje continuo, aporto fuerte capacidad de análisis, trabajo colaborativo en entornos ágiles y comunicación técnica efectiva. Comprometido con la entrega de soluciones robustas y eficientes que integran requisitos de negocio y experiencia de usuario final.",
+      "location": "Turrialba, Costa Rica"
+    },
+    "experience": [
+      {
+        "company": "4Geeks",
+        "position": "Desarrollador Full Stack",
+        "startDate": "2025-07-01",
+        "endDate": "2025-12-01",
+        "achievements": [
+          "Lideré el desarrollo integral de la primera aplicación móvil oficial (Flutter) desde cero, expandiendo el alcance digital de la empresa al migrar los servicios web a una experiencia móvil de alto rendimiento.",
+          "Lideré la refactorización y el rediseño de UI/UX de MARKET-APP (Electron + React), transformando un proyecto inicial en una solución de autoservicio funcional, accesible y lista para producción con soporte i18n.",
+          "Desarrollé un sistema de mensajería en tiempo real (Angular + Firebase), incrementando la eficiencia en la comunicación entre candidatos y reclutadores mediante notificaciones instantáneas y gestión de chats.",
+          "Refactoricé middlewares de backend en Python para integrar un nuevo sistema de autenticación por API Key, reforzando la seguridad y permitiendo la validación concurrente de tokens OAuth y JWT."
+        ]
+      },
+      {
+        "company": "Lácteos El Torito",
+        "position": "Diseñador Web y Desarrollador",
+        "startDate": "2024-01-16",
+        "endDate": "2024-03-01",
+        "achievements": [
+          "Gestioné el ciclo de vida completo (SDLC) para la primera plataforma web de la empresa, logrando un incremento del 100% en el alcance digital y una presencia de marca profesionalizada.",
+          "Desarrollé y lancé un sitio web de alto rendimiento utilizando Astro, alcanzando puntuaciones casi perfectas en Google Lighthouse (95+) en rendimiento, SEO y accesibilidad.",
+          "Habilité la comunicación omnicanal mediante la integración de formularios automatizados, correo directo y WhatsApp, agilizando el proceso de adquisición de clientes.",
+          "Diseñé un sistema de identidad visual completo desde cero, garantizando una consistencia del 100% en todos los puntos de contacto digitales y dispositivos móviles."
+        ]
+      },
+      {
+        "company": "INTA Costa Rica",
+        "position": "Desarrollador Full Stack",
+        "startDate": "2023-08-12",
+        "endDate": "2023-12-04",
+        "achievements": [
+          "Gestioné el ciclo de vida completo (SDLC) bajo la metodología RUP para diseñar y desarrollar un ERP desde cero, centralizando la gestión de inventarios de múltiples bodegas a nivel nacional.",
+          "Digitalicé y automaticé el proceso de gestión de stock, sustituyendo cartas físicas y hojas de Excel por un sistema en tiempo real con SQL Server, reduciendo el tiempo de procesamiento de solicitudes en un 80%.",
+          "Desarrollé un módulo de reportes automatizados para auditorías trimestrales, permitiendo la generación de archivos PDF y Excel con un solo clic y eliminando errores humanos en el manejo de datos críticos.",
+          "Orquesté el diseño arquitectónico y despliegue del sistema utilizando Blazor y C#, garantizando la integridad del 100% de los datos durante la migración de registros manuales a una base de datos escalable."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "institution": "Universidad de Costa Rica",
+        "area": "Bachillerato en Informática Empresarial",
+        "startDate": "2020-03-10",
+        "endDate": "2026-02-01"
+      }
+    ],
+    "certificates": [
+      {
+        "name": "Desarrollo con IA: de 0 a Producción",
+        "date": "2026-03-14",
+        "issuer": "BIG school",
+        "outcomes": [
+          "Diseño y desarrollo de modelos de IA personalizados para casos de uso específicos, utilizando frameworks como TensorFlow y PyTorch.",
+          "Implementación de pipelines de entrenamiento y despliegue automatizados para garantizar la escalabilidad y eficiencia en la producción de soluciones de IA."
+        ]
+      },
+      {
+        "name": "Creación de agentes de IA con n8n",
+        "date": "2026-03-10",
+        "issuer": "LinkedIn Learning",
+        "outcomes": [
+          "Diseño y desarrollo de agentes de IA utilizando n8n para automatizar tareas complejas y mejorar la eficiencia operativa.",
+          "Integración de agentes de IA con diversas APIs y servicios para crear flujos de trabajo inteligentes y personalizados."
+        ]
+      },
+      {
+        "name": "Inmersión IA - Google Gemini",
+        "date": "2025-09-04",
+        "issuer": "Alura Latam",
+        "outcomes": [
+          "Desarrollo de aplicaciones y soluciones utilizando Google Gemini, aprovechando sus capacidades avanzadas de procesamiento de lenguaje natural y generación de contenido.",
+          "Implementación de casos de uso innovadores con Google Gemini para mejorar la interacción con los usuarios y optimizar procesos empresariales."
+        ]
+      },
+      {
+        "name": "Oracle Next Education",
+        "date": "2024-02-12",
+        "issuer": "Oracle + Alura Latam",
+        "outcomes": [
+          "Participación en un programa intensivo de formación en tecnologías Oracle, abarcando áreas como desarrollo de software, bases de datos y soluciones en la nube.",
+          "Desarrollo de proyectos prácticos y desafíos técnicos que integran conocimientos adquiridos en el programa, demostrando habilidades en la creación de soluciones digitales efectivas."
+        ]
+      },
+      {
+        "name": "Oracle Cloud Infrastructure",
+        "date": "2024-02-12",
+        "issuer": "Oracle + Alura Latam",
+        "outcomes": [
+          "Adquisición de conocimientos profundos sobre la infraestructura en la nube de Oracle, incluyendo servicios de computación, almacenamiento y redes.",
+          "Implementación de soluciones en la nube utilizando Oracle Cloud Infrastructure, optimizando el rendimiento y la escalabilidad de las aplicaciones desplegadas."
+        ]
+      },
+      {
+        "name": "Python, Data Science en OCI y Oracle Analytics",
+        "date": "2024-02-11",
+        "issuer": "Oracle + Alura Latam",
+        "outcomes": [
+          "Desarrollo de habilidades en Python para análisis de datos y ciencia de datos, aplicando técnicas de manipulación de datos, visualización y modelado predictivo.",
+          "Implementación de soluciones de análisis de datos utilizando Oracle Cloud Infrastructure y Oracle Analytics, optimizando la toma de decisiones basada en datos."
+        ]
+      },
+      {
+        "name": "SQL con MySQL Server de Oracle",
+        "date": "2024-01-28",
+        "issuer": "Oracle + Alura Latam",
+        "outcomes": [
+          "Adquisición de conocimientos sólidos en SQL y MySQL Server, incluyendo la creación y gestión de bases de datos, consultas avanzadas y optimización del rendimiento.",
+          "Implementación de soluciones de gestión de datos utilizando MySQL Server, garantizando la integridad y seguridad de los datos en aplicaciones empresariales."
+        ]
+      },
+      {
+        "name": "Scrum Fundamentals Certified (SFC)",
+        "date": "2023-10-31",
+        "issuer": "SCRUMstudy",
+        "outcomes": [
+          "Comprensión de los fundamentos de Scrum, incluyendo roles, eventos y artefactos, para facilitar la implementación efectiva de Scrum en proyectos de desarrollo de software.",
+          "Aplicación de principios ágiles y prácticas de Scrum para mejorar la colaboración del equipo, la gestión de proyectos y la entrega de valor al cliente."
+        ]
+      },
+      {
+        "name": "Front End G5",
+        "date": "2023-07-21",
+        "issuer": "Oracle + Alura Latam",
+        "outcomes": [
+          "Desarrollo de habilidades en tecnologías front-end modernas, incluyendo HTML, CSS, JavaScript y frameworks como React y Angular.",
+          "Implementación de proyectos prácticos que demuestran la capacidad de crear interfaces de usuario atractivas, funcionales y responsivas utilizando las tecnologías aprendidas."
+        ]
+      }
+    ],
+    "skills": {
+      "frontend": [
+        "React",
+        "Angular",
+        "Astro",
+        "TypeScript",
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "Tailwind CSS",
+        "Diseño Responsivo",
+        "Sistemas de Diseño",
+        "Figma"
+      ],
+      "backend": [
+        "Node.js",
+        "NestJS",
+        "Express",
+        ".NET",
+        "Entity Framework",
+        "Python",
+        "Django",
+        "Java",
+        "SQL Server",
+        "MySQL",
+        "MongoDB"
+      ],
+      "mobile": ["Flutter", "React Native", "Ionic"],
+      "architecture": ["Clean Architecture", "DDD", "Screaming Architecture", "SOLID", "Microservicios"],
+      "devops": ["Git", "GitHub", "Docker", "CI/CD"],
+      "methodologies": ["Scrum", "RUP"],
+      "ia": ["IA Generativa", "Agentes de IA", "n8n"],
+      "languages": ["Español (Nativo)", "Inglés (Intermedio - B1/B2)"]
+    },
+    "projects": [
+      {
+        "name": "Lácteos El Torito",
+        "description": "Sitio web para una empresa de productos lácteos.",
+        "technologies": ["Astro", "TypeScript", "CSS", "Figma"]
+      },
+      {
+        "name": "Silk Tree",
+        "description": "Aplicación web para la gestión de citas médicas, usuarios y servicios del hospital.",
+        "technologies": ["React", "Screaming Architecture", "TypeScript"]
+      },
+      {
+        "name": "AluraGeek",
+        "description": "E-commerce de productos desarrollado como desafío para Oracle Next Education.",
+        "technologies": ["HTML", "CSS", "Vanilla JS"]
+      },
+      {
+        "name": "Turríka",
+        "description": "Landing page interactiva que presenta la historia y preparación de los chicharrones de queso, receta típica de Turrialba.",
+        "technologies": ["Astro JS", "GSAP", "Lenis"]
+      },
+      {
+        "name": "Alura Encryptor",
+        "description": "Encriptador y desencriptador de texto desarrollado como desafío para Oracle Next Education.",
+        "technologies": ["Astro JS", "TypeScript", "Tailwind CSS"]
+      },
+      {
+        "name": "Silk Tree RESTful API",
+        "description": "RESTful API para la gestión de citas médicas, usuarios y servicios del hospital.",
+        "technologies": ["Node JS", "Express", "JWT", "MySQL"]
+      },
+      {
+        "name": "AluraGeek RESTful API",
+        "description": "RESTful API para la gestión de artículos, usuarios y comentarios.",
+        "technologies": ["Node JS", "Express", "JWT", "Mongo DB"]
+      },
+      {
+        "name": "Hi Cupon RESTful API",
+        "description": "RESTful API para gestionar cupones, promociones y descuentos.",
+        "technologies": ["C#", "Clean Architecture", "SQL Server"]
+      },
+      {
+        "name": "Nexo Flow CRM",
+        "description": "Landing de CRM para equipos comerciales con WhatsApp, correo, automatización y analítica.",
+        "technologies": ["Astro", "TypeScript", "Tailwind CSS"]
+      },
+      {
+        "name": "Mockit",
+        "description": "Proyecto de hackatón que genera APIs REST mock desde plantillas JSON.",
+        "technologies": ["Astro", "Tailwind CSS", "TypeScript"]
+      },
+      {
+        "name": "Mockit RESTful API",
+        "description": "Backend API que crea endpoints REST mock dinámicos desde JSON.",
+        "technologies": ["Express", "IA Generativa", "TypeScript"]
+      }
+    ]
+  }
+}

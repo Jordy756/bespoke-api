@@ -23,7 +23,7 @@ export class ProfileController {
     @Headers('x-user-id') userId: string, // TODO: Replace with @CurrentUser() from JWT Guard
     @Body() dto: InitializeProfileDto,
   ): Promise<ProfileResponseDto> {
-    const profileEntity = ProfileMapper.toCreateEntity(userId, dto);
+    const profileEntity = ProfileMapper.toInitializeEntity(userId, dto);
     const result = await this.initializeProfileCommand.execute(profileEntity);
     return ProfileMapper.toDTO(result);
   }

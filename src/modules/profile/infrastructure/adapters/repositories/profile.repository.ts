@@ -1,6 +1,6 @@
-import { PrismaService } from '@core/database/prisma.service';
+import type { PrismaService } from '@core/database/prisma.service';
 import { ProfileMapper } from '@modules/profile/application/mappers/profile.mapper';
-import { Profile } from '@modules/profile/domain/entities/profile.entity';
+import type { Profile } from '@modules/profile/domain/entities/profile.entity';
 import type { IProfileRepository } from '@modules/profile/domain/ports/profile.repository.port';
 import { Injectable } from '@nestjs/common';
 
@@ -9,7 +9,10 @@ export class ProfileRepository implements IProfileRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async save(profile: Profile): Promise<Profile> {
-    const { userId, data } = profile;
+    const { userId, data: prismaData } = profile;
+
+    const data = prismaData as unknown as Record<string, any>;
+
     const saved = await this.prisma.profile.upsert({
       where: { userId },
       update: { data },
