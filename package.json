@@ -24,12 +24,12 @@
     "@nestjs/config": "^4.0.4",
     "@nestjs/core": "^11.1.19",
     "@nestjs/platform-express": "^11.1.19",
-    "@nestjs/swagger": "^11.4.1",
+    "@nestjs/swagger": "^11.4.2",
+    "@openrouter/sdk": "^0.12.24",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
-    "@scalar/nestjs-api-reference": "^1.1.10",
+    "@scalar/nestjs-api-reference": "^1.1.13",
     "@toon-format/toon": "^2.1.0",
-    "ai": "^6.0.172",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
     "pg": "^8.20.0",
@@ -48,10 +48,10 @@
     "@types/pg": "^8.20.0",
     "@types/supertest": "^7.2.0",
     "dotenv": "^17.4.2",
-    "eslint": "^10.2.1",
+    "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
-    "globals": "^17.5.0",
+    "globals": "^17.6.0",
     "jest": "^30.3.0",
     "prettier": "^3.8.3",
     "prisma": "^7.8.0",
@@ -62,7 +62,7 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.59.0"
+    "typescript-eslint": "^8.59.1"
   },
   "jest": {
     "moduleFileExtensions": [

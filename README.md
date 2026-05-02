@@ -9,8 +9,7 @@
 3. **AI evaluation** – a lightweight call to an LLM scores the fit and decides whether to proceed.  
 4. **Data extraction** – a second LLM call returns a **strict JSON** containing only the information needed for the résumé (no HTML, no layout).  
 5. **Template injection** – that JSON is injected into a proven‑ATS‑friendly HTML/CSS template chosen by the user.  
-6. **PDF generation** – the HTML is rendered to PDF with a headless browser (Puppeteer) guaranteeing pixel‑perfect output that passes any ATS filter.  
-7. **(Optional) Events** – after a successful generation a domain event (e.g. `ResumeGenerated`) can trigger background tasks such as credit deduction, analytics, or email notifications.
+6. **(Optional) Events** – after a successful generation a domain event (e.g. `ResumeGenerated`) can trigger background tasks such as credit deduction, analytics, or email notifications.
 
 All business logic is completely decoupled from framework, database, and external services by using a **Vertical‑Slice + Hexagonal (Ports & Adapters)** architecture. This makes the code base easy to understand, test, and evolve.
 
@@ -23,7 +22,6 @@ All business logic is completely decoupled from framework, database, and externa
 | **Backend** | **NestJS (Node.js)** | Enterprise‑grade framework, built‑in DI, modular structure – perfect for Hexagonal Architecture. |
 | **Database** | **PostgreSQL** | Solid relational core + powerful `JSONB` column for flexible profile storage. |
 | **ORM** | **Prisma** | Type‑safe, auto‑generated client, migrations, works great with PostgreSQL JSONB. |
-| **PDF generation** | **Puppeteer (headless Chrome)** | Guarantees the HTML/CSS template is rendered exactly as designed – essential for ATS compliance. |
 | **AI** | **OpenAI API (gpt‑4o‑mini)** | Fast, cheap, returns clean JSON – ideal for the two‑step AI flow (fit‑score → structured data). |
 | **Architecture** | **Vertical Slices (Modular Monolith) + Hexagonal (Ports & Adapters)** | Business logic is decoupled from framework, DB, and external services – easy to replace or scale any slice. |
 | **DevOps / Local DB** | **Docker Compose (Postgres)** | One‑command reproducible dev environment for the whole team. |
@@ -150,7 +148,6 @@ src/
 * **Astro docs** – <https://docs.astro.build>  
 * **React + Vite** – <https://vitejs.dev/guide/>  
 * **class-validator** – <https://github.com/typestack/class-validator>  
-* **Puppeteer** – <https://pptr.dev>  
 * **OpenAI API** – <https://platform.openai.com/docs/guides/text-generation>  
 
 For a deeper dive into the hexagonal layers, CQRS, event handling and the reasoning behind each tech decision, see the `ARCHITECTURE.md` file in the repository.

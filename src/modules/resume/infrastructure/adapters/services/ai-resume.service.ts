@@ -8,7 +8,7 @@ export class AiResumeService implements IAiResumeService {
 
   constructor(private readonly aiOrchestrator: AiOrchestratorService) {}
 
-  async generateTailoredResume(profileDataToon: string, jobOffer: string): Promise<GeneratedResumeResult> {
+  async generateResume(profileDataToon: string, jobOffer: string): Promise<GeneratedResumeResult> {
     this.logger.log('Starting tailored resume generation via orchestrated LLMs...');
 
     const systemPrompt = `You are an expert ATS-friendly Resume Writer and Career Coach.
@@ -32,26 +32,17 @@ ${profileDataToon}
 Analyze the profile against the job offer, select the most relevant experience and skills, format it appropriately, and return the tailored output in strict JSON format.`;
 
     try {
-      // Call the domain-agnostic orchestrator asking specifically for JSON
-      const rawJsonResponse = await this.aiOrchestrator.generateTextContent({
+      const jsonResponse = await this.aiOrchestrator.generate({
         system: systemPrompt,
         prompt: userPrompt,
       });
 
-      // We parse the JSON output natively since we asked the LLM to use JSON
-      const parsedData = JSON.parse(rawJsonResponse) as {
-        jobTitle?: string;
-        fitScore?: number;
-        resumeData?: Record<string, unknown>;
-      };
-
-      // We stringify the tailored resume data payload as expected by the domain
-      const resumeJsonString = JSON.stringify(parsedData.resumeData || parsedData);
+      console.log({ rawJsonResponse: jsonResponse });
 
       return {
-        jobTitle: parsedData.jobTitle || 'Tailored Resume',
-        fitScore: parsedData.fitScore || 85,
-        toonData: resumeJsonString,
+        jobTitle: 'AI-Generated Job Title',
+        fitScore: 85,
+        data: jsonResponse,
       };
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : String(error);

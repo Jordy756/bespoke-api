@@ -16,6 +16,9 @@ export class EnvironmentVariables {
 
   @IsString()
   DATABASE_URL!: string;
+
+  @IsString()
+  OPENROUTER_API_KEY!: string;
 }
 
 export function validateEnv(config: Record<string, unknown>) {

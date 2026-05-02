@@ -1,9 +1,9 @@
 export interface GeneratedResumeResult {
   jobTitle: string;
   fitScore: number;
-  toonData: string;
+  data: string;
 }
 
 export interface IAiResumeService {
-  generateTailoredResume(profileToon: string, jobOffer: string): Promise<GeneratedResumeResult>;
+  generateResume(profile: string, jobOffer: string): Promise<GeneratedResumeResult>;
 }
