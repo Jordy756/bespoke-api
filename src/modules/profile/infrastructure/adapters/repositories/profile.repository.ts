@@ -1,4 +1,4 @@
-import type { PrismaService } from '@core/database/prisma.service';
+import { PrismaService } from '@core/database/prisma.service';
 import { ProfileMapper } from '@modules/profile/application/mappers/profile.mapper';
 import type { Profile } from '@modules/profile/domain/entities/profile.entity';
 import type { IProfileRepository } from '@modules/profile/domain/ports/profile.repository.port';
