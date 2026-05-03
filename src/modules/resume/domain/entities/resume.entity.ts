@@ -1,9 +1,59 @@
+export interface ResumeBasics {
+  name: string;
+  email: string;
+  phone: string;
+  location: string;
+  summary: string;
+}
+
+export interface ResumeExperience {
+  company: string;
+  position: string;
+  startDate: string;
+  endDate: string;
+  achievements: string[];
+}
+
+export interface ResumeEducation {
+  institution: string;
+  area: string;
+  startDate: string;
+  endDate: string;
+}
+
+export interface ResumeSkills {
+  technical: string[];
+  soft: string[];
+  languages: string[];
+}
+
+export interface ResumeProject {
+  name: string;
+  description: string;
+  outcome?: string;
+}
+
+export interface ResumeCertificate {
+  name: string;
+  date: string;
+  issuer: string;
+}
+
+export interface ResumeData {
+  basics: ResumeBasics;
+  experience: ResumeExperience[];
+  education: ResumeEducation[];
+  skills: ResumeSkills;
+  projects: ResumeProject[];
+  certificates: ResumeCertificate[];
+}
+
 export interface ResumeProps {
   id?: string;
   userId: string;
   jobTitle: string;
   fitScore: number;
-  data: Record<string, any>;
+  data: ResumeData;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -13,7 +63,7 @@ export class Resume {
   public readonly userId: string;
   public readonly jobTitle: string;
   public readonly fitScore: number;
-  public readonly data: Record<string, any>;
+  public readonly data: ResumeData;
   public readonly createdAt?: Date;
   public readonly updatedAt?: Date;
 
@@ -27,13 +77,8 @@ export class Resume {
     this.updatedAt = props.updatedAt;
   }
 
-  static createNew(userId: string, jobTitle: string, fitScore: number, data: Record<string, any>): Resume {
-    return new Resume({
-      userId,
-      jobTitle,
-      fitScore,
-      data,
-    });
+  static createNew(userId: string, jobTitle: string, fitScore: number, data: ResumeData): Resume {
+    return new Resume({ userId, jobTitle, fitScore, data });
   }
 
   static reconstruct(props: ResumeProps): Resume {

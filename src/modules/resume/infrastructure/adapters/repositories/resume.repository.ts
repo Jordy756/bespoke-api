@@ -12,7 +12,7 @@ export class ResumeRepository implements IResumeRepository {
     const { userId, jobTitle, fitScore, data } = resume;
 
     const saved = await this.prisma.resume.create({
-      data: { userId, jobTitle, fitScore, data },
+      data: { userId, jobTitle, fitScore, data: data as any },
     });
 
     return ResumeMapper.toDomain(saved);

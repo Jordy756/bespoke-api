@@ -4,8 +4,8 @@ import { ConfigService } from '@nestjs/config';
 import { OpenRouter } from '@openrouter/sdk';
 
 const FREE_MODELS = [
-  'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free',
   'openai/gpt-oss-120b:free',
+  'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free',
   'nousresearch/hermes-3-llama-3.1-405b:free',
   'google/gemma-3-27b-it:free',
 ] as const;

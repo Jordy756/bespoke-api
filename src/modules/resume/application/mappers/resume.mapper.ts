@@ -1,5 +1,5 @@
 import { ResumeResponseDto } from '@modules/resume/application/dtos/resume-response.dto';
-import { Resume } from '@modules/resume/domain/entities/resume.entity';
+import { Resume, type ResumeData } from '@modules/resume/domain/entities/resume.entity';
 
 export class ResumeMapper {
   static toDTO(domainEntity: Resume): ResumeResponseDto {
@@ -28,7 +28,7 @@ export class ResumeMapper {
       userId: data.userId,
       jobTitle: data.jobTitle,
       fitScore: data.fitScore,
-      data: data.data as Record<string, any>,
+      data: data.data as ResumeData,
       createdAt: data.createdAt,
       updatedAt: data.updatedAt,
     });
