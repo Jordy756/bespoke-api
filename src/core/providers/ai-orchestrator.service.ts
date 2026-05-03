@@ -28,7 +28,7 @@ export class AiOrchestratorService {
   }
 
   async generate(opts: GenerateOptions): Promise<string> {
-    const { prompt, system, temperature = 0.2, maxTokens = 4096 } = opts;
+    const { prompt, system, temperature = 0.2, maxTokens } = opts;
     const model = FREE_MODELS[this.modelIndex];
 
     try {

@@ -58,82 +58,31 @@
         "name": "Desarrollo con IA: de 0 a Producción",
         "date": "2026-03-14",
         "issuer": "BIG school",
-        "outcomes": [
-          "Diseño y desarrollo de modelos de IA personalizados para casos de uso específicos, utilizando frameworks como TensorFlow y PyTorch.",
-          "Implementación de pipelines de entrenamiento y despliegue automatizados para garantizar la escalabilidad y eficiencia en la producción de soluciones de IA."
-        ]
+        "skills": ["IA Generativa", "Python", "Flask", "Docker"]
       },
       {
         "name": "Creación de agentes de IA con n8n",
         "date": "2026-03-10",
         "issuer": "LinkedIn Learning",
-        "outcomes": [
-          "Diseño y desarrollo de agentes de IA utilizando n8n para automatizar tareas complejas y mejorar la eficiencia operativa.",
-          "Integración de agentes de IA con diversas APIs y servicios para crear flujos de trabajo inteligentes y personalizados."
-        ]
+        "skills": ["Agentes de IA", "n8n", "Automatización de Flujos de Trabajo"]
       },
       {
         "name": "Inmersión IA - Google Gemini",
         "date": "2025-09-04",
         "issuer": "Alura Latam",
-        "outcomes": [
-          "Desarrollo de aplicaciones y soluciones utilizando Google Gemini, aprovechando sus capacidades avanzadas de procesamiento de lenguaje natural y generación de contenido.",
-          "Implementación de casos de uso innovadores con Google Gemini para mejorar la interacción con los usuarios y optimizar procesos empresariales."
-        ]
+        "skills": ["IA Generativa", "Google Gemini", "Aplicaciones de IA en Negocios"]
       },
       {
         "name": "Oracle Next Education",
         "date": "2024-02-12",
         "issuer": "Oracle + Alura Latam",
-        "outcomes": [
-          "Participación en un programa intensivo de formación en tecnologías Oracle, abarcando áreas como desarrollo de software, bases de datos y soluciones en la nube.",
-          "Desarrollo de proyectos prácticos y desafíos técnicos que integran conocimientos adquiridos en el programa, demostrando habilidades en la creación de soluciones digitales efectivas."
-        ]
-      },
-      {
-        "name": "Oracle Cloud Infrastructure",
-        "date": "2024-02-12",
-        "issuer": "Oracle + Alura Latam",
-        "outcomes": [
-          "Adquisición de conocimientos profundos sobre la infraestructura en la nube de Oracle, incluyendo servicios de computación, almacenamiento y redes.",
-          "Implementación de soluciones en la nube utilizando Oracle Cloud Infrastructure, optimizando el rendimiento y la escalabilidad de las aplicaciones desplegadas."
-        ]
-      },
-      {
-        "name": "Python, Data Science en OCI y Oracle Analytics",
-        "date": "2024-02-11",
-        "issuer": "Oracle + Alura Latam",
-        "outcomes": [
-          "Desarrollo de habilidades en Python para análisis de datos y ciencia de datos, aplicando técnicas de manipulación de datos, visualización y modelado predictivo.",
-          "Implementación de soluciones de análisis de datos utilizando Oracle Cloud Infrastructure y Oracle Analytics, optimizando la toma de decisiones basada en datos."
-        ]
-      },
-      {
-        "name": "SQL con MySQL Server de Oracle",
-        "date": "2024-01-28",
-        "issuer": "Oracle + Alura Latam",
-        "outcomes": [
-          "Adquisición de conocimientos sólidos en SQL y MySQL Server, incluyendo la creación y gestión de bases de datos, consultas avanzadas y optimización del rendimiento.",
-          "Implementación de soluciones de gestión de datos utilizando MySQL Server, garantizando la integridad y seguridad de los datos en aplicaciones empresariales."
-        ]
+        "skills": ["HTML5", "CSS3", "JavaScript", "React", "MySQL", "Python", "Oracle Cloud Infrastructure", "Data Science", "Oracle Analytics"]
       },
       {
         "name": "Scrum Fundamentals Certified (SFC)",
         "date": "2023-10-31",
         "issuer": "SCRUMstudy",
-        "outcomes": [
-          "Comprensión de los fundamentos de Scrum, incluyendo roles, eventos y artefactos, para facilitar la implementación efectiva de Scrum en proyectos de desarrollo de software.",
-          "Aplicación de principios ágiles y prácticas de Scrum para mejorar la colaboración del equipo, la gestión de proyectos y la entrega de valor al cliente."
-        ]
-      },
-      {
-        "name": "Front End G5",
-        "date": "2023-07-21",
-        "issuer": "Oracle + Alura Latam",
-        "outcomes": [
-          "Desarrollo de habilidades en tecnologías front-end modernas, incluyendo HTML, CSS, JavaScript y frameworks como React y Angular.",
-          "Implementación de proyectos prácticos que demuestran la capacidad de crear interfaces de usuario atractivas, funcionales y responsivas utilizando las tecnologías aprendidas."
-        ]
+        "skills": ["Scrum", "Agile Methodologies", "Project Management"]
       }
     ],
     "skills": {
