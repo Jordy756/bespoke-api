@@ -1,6 +1,8 @@
 allowBuilds:
   '@nestjs/core': true
+  '@openrouter/sdk': true
   '@prisma/engines': true
+  '@scarf/scarf': false
   bcrypt: true
   prisma: true
   unrs-resolver: true
